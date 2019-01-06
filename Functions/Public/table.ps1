@@ -11,16 +11,24 @@ Function Table {
             Position = 0
         )]
         [scriptblock]
-        $ChildItem
+        $ChildItem,
+
+        [Parameter(Position = 1)]
+        [String]$Class
     )
     Process{
-        "<table>"
-
+        if ($Class)
+        {
+            "<table class='$class'>"            
+        }
+        else
+        {
+            '<table>'    
+        }
 
         if($ChildItem){
             $ChildItem.Invoke()
         }
-
 
         '</Table>'
     }
